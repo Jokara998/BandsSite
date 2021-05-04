@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose")
 const cors = require("cors")
 const cookieParser = require("cookie-parser")
-
+require('dotenv/config')
 
 app.use(cors({credentials:true, origin:["http://localhost:8081", "https://bands-site.herokuapp.com"]}))
 app.use(express.urlencoded({ extended: true , limit:'50mb' }));
@@ -40,10 +40,10 @@ mongoose.connect(
 //Handle production
 if(process.env.NODE_ENV === "production"){
     // Static folder
-    app.use(express.static(__dirname+"/build/"));
+    app.use(express.static(__dirname+"/dist/"));
     // Handle SPA
     app.get(/.*/, (req,res) =>{
-        res.sendFile(__dirname + "/build/index.html")
+        res.sendFile(__dirname + "/dist/index.html")
     })
 }
 
