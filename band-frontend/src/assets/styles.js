@@ -190,7 +190,7 @@ export default makeStyles((theme) => ({
     genreContainer:{
         width:"80%",
         display:"flex",
-        alignItems:"space-around",
+        alignItems:"center",
         justifyContent:"center",
         flexWrap: "wrap"
 
@@ -219,6 +219,14 @@ export default makeStyles((theme) => ({
         "&:hover":{
             color:theme.palette.red,
             backgroundColor:theme.palette.whitesmoke,
+        },
+        "&:visited":{
+            color:theme.palette.whitesmoke,
+            background:theme.palette.red,
+        },
+        "&:active":{
+            color:theme.palette.whitesmoke,
+            background:theme.palette.red,
         }
     },
 
@@ -326,6 +334,7 @@ export default makeStyles((theme) => ({
         display:'flex',
         marginRight:"15px",
         marginLeft:"15px",
+        height:"200px"
     },
 
     bandPageImageBorder:{
@@ -350,9 +359,8 @@ export default makeStyles((theme) => ({
 
     bandPageActions:{
         display:"flex",
-        position:"fixed",
-        top:"730px",
-        left:"585px"
+        justifyContent:"center",
+        alignContent:"center"
     },
     
     bandPageButton:{
@@ -441,7 +449,7 @@ export default makeStyles((theme) => ({
     //ALBUMS
     albumsContainer:{
         display:"flex",
-        justifyContent:"space-around",
+        justifyContent:"center",
         alignContent:"center",
         width:"80%",
         flexWrap: "wrap"
@@ -477,6 +485,14 @@ export default makeStyles((theme) => ({
         height: "100%",
         alignSelf: "center",
         borderRadius:"15px"
+    },
+
+    link:{
+        color:theme.palette.whitesmoke,
+        "&:hover":{
+            color:theme.palette.red,
+            cursor:"pointer"
+        },
     },
 
     albumLink:{

@@ -17,13 +17,9 @@ import EditPlaylist from "./pages/EditPlaylist"
 import {UserProvider} from "./context/UserContext"
 import theme from './assets/theme'
 import { ThemeProvider } from '@material-ui/core/styles';
-import React, {useState} from "react"
+import React from "react"
 
 function App() {
-
-
-  useState(()=>{
-  })
 
   return (
     <UserProvider>

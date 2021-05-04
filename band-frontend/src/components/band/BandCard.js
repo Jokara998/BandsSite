@@ -8,20 +8,18 @@ const BandCard = ({band}) =>{
     const classes = useStyles();
   
     return (
-        <Grid sm={4} spacing={3}>
-            <Card key={band.id} className={classes.bandCard}>
-                <h2 className={classes.bandHeader}>{band.name}</h2> 
-                <CardContent style={{display:"grid", justifyItems:"start"}}>
-                    <p className={classes.bandP1}> Years Active: {band.founded}-{band.ended} </p>
-                    <p className={classes.bandP2}> Bio: {band.description} </p>
-                </CardContent>
-                <CardActions className={classes.bandActions}>
-                    <Link to={`/band/${band.id}`}>
-                        <Button className={classes.bandButton} text={"Go to Band Page"} />
-                    </Link>
-                </CardActions>
-            </Card>
-        </Grid>
+        <Card key={band.id} className={classes.bandCard}>
+            <h2 className={classes.bandHeader}>{band.name}</h2> 
+            <CardContent style={{display:"grid", justifyItems:"start"}}>
+                <p className={classes.bandP1}> Years Active: {band.founded}-{band.ended} </p>
+                <p className={classes.bandP2}> Bio: {band.description} </p>
+            </CardContent>
+            <CardActions className={classes.bandActions}>
+                <Link to={`/band/${band.id}`}  className={classes.link}>
+                    <Button className={classes.bandButton} text={"Go to Band Page"} />
+                </Link>
+            </CardActions>
+        </Card>
     );
 }
 

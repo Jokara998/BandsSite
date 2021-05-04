@@ -48,9 +48,17 @@ const Genre = ({match}) =>{
                 { 
                     bands.length === 0 ? <h2 style={{color:"#f5f5f5", marginTop:"30px"}}> No bands available! </h2> :
                     <Container className={classes.genreContainer}>
-                            {bands.map( band => (
-                                <BandCard key={band.id} band={band} />
-                            ))}
+                            {   
+                                bands.length === 1 ?   
+                                <Grid sm={12} spacing={3} style={{display:'flex', justifyContent:"center", alignContent:'center'}}>
+                                    <BandCard key={bands[0].id} band={bands[0]} />
+                                </Grid> : 
+                                bands.map( band => (
+                                    <Grid sm={4} spacing={3} style={{display:'flex', justifyContent:"center", alignContent:'center'}}>
+                                        <BandCard key={band.id} band={band} />
+                                    </Grid>
+                                ))
+                            }
                     </Container>
                 }
             </div>

@@ -93,7 +93,7 @@ const Band = ({match}) =>{
                             }
                         </CardContent>
                         <CardActions className={classes.bandPageActions}>
-                            <Link to={`/band/${match.params.id}/album`}>
+                            <Link to={`/band/${match.params.id}/album`}  className={classes.link} >
                                 <Button className={classes.bandPageButton} text={"See Albums"} />
                             </Link>
                         </CardActions>

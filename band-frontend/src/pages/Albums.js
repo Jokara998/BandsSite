@@ -76,7 +76,9 @@ const Albums = ({match}) =>{
                     { 
                         albums.length === 0 ? <h2 style={{color:"#f5f5f5", marginTop:"30px"}}> No albums available! </h2> :
                         <Container className={classes.albumsContainer}>
-                            {albums.map(album=>(<AlbumCard key={album.id} album={album} band={band}/>))}     
+                            {
+                                albums.map(album=>(<AlbumCard key={album.id} album={album} band={band}/>))
+                            }     
                         </Container>
                     }
                 </Container>

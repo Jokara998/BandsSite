@@ -1,5 +1,5 @@
 import React from "react"
-import {Grid, Card, CardActions, CardContent } from "@material-ui/core"
+import {Card, CardActions, CardContent } from "@material-ui/core"
 import useStyles from "../../assets/styles"
 import Button from "../controls/Button"
 import {Link} from "react-router-dom"
@@ -22,19 +22,17 @@ const GenreCard = ({genre}) =>{
     };
 
     return (
-        <Grid sm={4} spacing={3}>
-            <Card key={genre.id} style={genreCard}>
-                <h2 className={classes.genreHeader}>{genre.name}</h2> 
-                <CardContent>
-                    <p className={classes.genreP}> {genre.description} </p>
-                </CardContent>
-                <CardActions className={classes.genreActions}>
-                    <Link to={`/genre/${genre.id}/band`}>
-                        <Button className={classes.genreButton} text={"See Bands"} />
-                    </Link>
-                </CardActions>
-            </Card>
-        </Grid>
+        <Card key={genre.id} style={genreCard}>
+            <h2 className={classes.genreHeader}>{genre.name}</h2> 
+            <CardContent>
+                <p className={classes.genreP}> {genre.description} </p>
+            </CardContent>
+            <CardActions className={classes.genreActions}>
+                <Link to={`/genre/${genre.id}/band`} className={classes.link}>
+                    <Button className={classes.genreButton} text={"See Bands"} />
+                </Link>
+            </CardActions>
+        </Card>
     );
 }
 
