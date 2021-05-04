@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+  width: 100%;
+  min-height: 100%;
+  max-height: 170%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url('./assets/wallpaper.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center top;
+  background-size: cover; 
+  font-family: 'New Rocker, cursive';
+}
+
