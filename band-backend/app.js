@@ -40,10 +40,10 @@ mongoose.connect(
 //Handle production
 if(process.env.NODE_ENV === "production"){
     // Static folder
-    app.use(express.static(__dirname+"/dist/"));
+    app.use(express.static(__dirname+"/build/"));
     // Handle SPA
     app.get(/.*/, (req,res) =>{
-        res.sendFile(__dirname + "/dist/index.html")
+        res.sendFile(__dirname + "/build/index.html")
     })
 }
 
