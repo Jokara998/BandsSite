@@ -3,6 +3,11 @@ const Genre = require("../models/Genre")
 
 const saveGenre = async (body) =>{
     try{
+        const genre = await GenreRepository.findByName(body.name);
+        if(genre){
+            return { status:409, message:"Genre already exist!"}
+        }
+
         const newGenre = Genre({
             name:body.name,
             description:body.description,
