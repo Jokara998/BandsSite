@@ -34,7 +34,7 @@ const PlaylistCard = ({playlist}) =>{
                     </Grid>
                     <Grid container sm={3}>
                         <Link to={`/playlist/${playlist.id}`}>
-                            <Tooltip title="Open playlist?" placement="right" arrow className={classes.tooltip}>
+                            <Tooltip  title={<h2 className={classes.tooltip}>Open playlist?</h2>} placement="right" arrow>
                                 <IconButton style={{marginLeft:"-10px"}}>
                                     <Icon className={classes.playlistArrowIcon} size={1.3}  path={mdiArrowRightBoldCircleOutline}/>
                                 </IconButton>

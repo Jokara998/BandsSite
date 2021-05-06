@@ -141,7 +141,7 @@ const Login = () =>{
                         </Grid>
                      </Grid>
                      <br/>
-                     <Grid> 
+                     <Grid container> 
                         <Button
                             type="submit"
                             fullWidth

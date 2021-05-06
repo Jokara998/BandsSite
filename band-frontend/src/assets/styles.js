@@ -1022,5 +1022,9 @@ export default makeStyles((theme) => ({
         },
     },
 
+    tooltip:{
+        color:theme.palette.whitesmoke,
+    }
+
 
 }));

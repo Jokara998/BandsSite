@@ -8,6 +8,7 @@ import Loader from "../components/Loader"
 const Genres = () =>{
     const classes = useStyles();
     const [genres, setGenres] = useState([]);
+    const [grid, setGrid] = useState(4);
     const [loader, setLoader] = useState(true);
 
 
@@ -15,6 +16,8 @@ const Genres = () =>{
         await axios.get("/genre")
         .then(response=>{
             setGenres(response.data);
+            if(response.data.length === 1)
+                setGrid(12);
             setLoader(false)
         }).catch(()=>{
             setGenres([]);
@@ -37,12 +40,8 @@ const Genres = () =>{
                         <Container className={classes.genreContainer}>
                           
                             {   
-                                genres.length === 1 ?   
-                                <Grid sm={12} spacing={3} style={{display:'flex', justifyContent:"center", alignContent:'center'}}>
-                                    <GenreCard key={genres[0].id} genre={genres[0]} />
-                                </Grid> : 
                                 genres.map( genre => (
-                                    <Grid sm={4} spacing={3} style={{display:'flex', justifyContent:"center", alignContent:'center'}}>
+                                    <Grid container sm={grid} spacing={3} style={{display:'flex', justifyContent:"center", alignContent:'center'}}>
                                         <GenreCard key={genre.id} genre={genre} />
                                     </Grid>
                                 ))

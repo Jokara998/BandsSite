@@ -9,6 +9,7 @@ const Genre = ({match}) =>{
     const classes = useStyles();
     const [bands, setBands] = useState([]);
     const [genre, setGenre] = useState({});
+    const [grid, setGrid] = useState(4);
     const [loader, setLoader] = useState(true)
 
     const getGenre = async ()=>{
@@ -26,8 +27,10 @@ const Genre = ({match}) =>{
     const getBands = async () =>{
         await axios.get("/genre/"+match.params.id+"/band")
         .then(response=>{
-           setBands(response.data)
-           setLoader(false);
+            setBands(response.data)
+            if(response.data.length === 1)
+                setGrid(4)
+            setLoader(false);
         }).catch(()=>{
             setBands([])
             setLoader(false);
@@ -49,12 +52,8 @@ const Genre = ({match}) =>{
                     bands.length === 0 ? <h2 style={{color:"#f5f5f5", marginTop:"30px"}}> No bands available! </h2> :
                     <Container className={classes.genreContainer}>
                             {   
-                                bands.length === 1 ?   
-                                <Grid sm={12} spacing={3} style={{display:'flex', justifyContent:"center", alignContent:'center'}}>
-                                    <BandCard key={bands[0].id} band={bands[0]} />
-                                </Grid> : 
                                 bands.map( band => (
-                                    <Grid sm={4} spacing={3} style={{display:'flex', justifyContent:"center", alignContent:'center'}}>
+                                    <Grid item sm={grid} spacing={3} style={{display:'flex', justifyContent:"center", alignContent:'center'}}>
                                         <BandCard key={band.id} band={band} />
                                     </Grid>
                                 ))

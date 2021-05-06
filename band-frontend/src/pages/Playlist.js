@@ -72,7 +72,7 @@ const Playlist = ({match}) =>{
     }
 
     const redirectEdit = () =>{
-        history.push("/playlist/"+playlist.id+"/edit-playlist")
+        history.push("/playlist/"+playlist.id+"/edit")
     }
 
     const errorClose = () =>{
@@ -139,7 +139,7 @@ const Playlist = ({match}) =>{
                         </Grid>
                     </Grid>
                  
-                    <Grid container sm={12}>
+                    <Grid item sm={12}>
                        <Container className={classes.albumPageListContainer}>
                             <List className={classes.albumPageList}>
                                 {playlist.songs.map((song, index)=>(<SongCard key={song.id} song={song} index={index+1} />))}
