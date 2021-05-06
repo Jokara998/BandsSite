@@ -26,7 +26,7 @@ const SongCard = ({song, index, album}) =>{
                <Grid sm={7} style={itemStyle}> {song.name} </Grid>
                <Grid sm={2} style={itemStyle}> {song.duration} </Grid>
                <Grid sm={2} style={{display:"flex", justifyContent:"center", alignText:"left"}}>
-                    <Tooltip title="Open song player?" placement="right" arrow className={classes.tooltip}>
+                    <Tooltip  title={<h2 className={classes.tooltip}>Open song player?</h2>}placement="right" arrow className={classes.tooltip}>
                         <IconButton onClick={()=>setModal(true)}> 
                             <Icon className={classes.songCardIcon} size={1.2} path={mdiMotionPlay} /> 
                         </IconButton>  

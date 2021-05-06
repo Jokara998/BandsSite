@@ -6,7 +6,7 @@ import axios from "../axios/index"
 import {UserContext} from "../context/UserContext"
 import getUserInfo from "../service/getUserInfo"
 import {Icon} from '@mdi/react';
-import {mdiGuitarElectric, mdiMusicBoxMultiple, mdiAccountArrowRight, mdiAccountArrowLeft, mdiAccountPlus, mdiPlaylistMusicOutline} from "@mdi/js"
+import {mdiDesktopMacDashboard,mdiGuitarElectric, mdiMusicBoxMultiple, mdiAccountArrowRight, mdiAccountArrowLeft, mdiAccountPlus, mdiPlaylistMusicOutline} from "@mdi/js"
 import Loader from "./Loader"
 
 const NavBar = () =>{
@@ -51,15 +51,23 @@ const NavBar = () =>{
                     </Link>
                     <Grid className={classes.navGrid}/>
                     {
+                        user.type === "Moderator" ? 
+                        <Link to="/dashboard/genre" className={classes.navLink}> 
+                            <Button className={classes.navButton}> <Icon size={1} path={mdiDesktopMacDashboard} /> <span className={classes.navLink}> Dashboard </span> </Button>
+                        </Link> : null
+                    }
+                    {
                         user.loggedIn && user.type==="Client" ? 
                         <Link to="/playlist" className={classes.navLink}> 
                             <Button className={classes.navButton}> <Icon size={1} path={mdiPlaylistMusicOutline} /> <span className={classes.navLink}> Playlists </span></Button>
                         </Link> : null
                     }
-
-                    <Link to="/genre" className={classes.navLink}> 
-                        <Button className={classes.navButton}> <Icon size={1} path={mdiMusicBoxMultiple} /> <span className={classes.navLink}> Genres </span> </Button>
-                    </Link>  
+                    {
+                        user.type === "Moderator" ? null :
+                        <Link to="/genre" className={classes.navLink}> 
+                            <Button className={classes.navButton}> <Icon size={1} path={mdiMusicBoxMultiple} /> <span className={classes.navLink}> Genres </span> </Button>
+                        </Link>  
+                    }
 
                     {
                         user.loggedIn ? null :   

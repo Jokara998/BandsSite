@@ -46,7 +46,7 @@ const Musician = ({match}) =>{
             loader ? <Loader open={true} title={"Loading..."} /> : 
             <Container className={classes.musicianContainer}>
                 <Card className={classes.musicianCard}>
-                    <Grid container sm={6}>
+                    <Grid item sm={6}>
                         <Card className={classes.musicianCard1}> 
                             <div className={classes.bandPageHeader}> 
                                 <h2>{musician.name} {musician.surname} </h2>
@@ -96,7 +96,7 @@ const Musician = ({match}) =>{
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid container sm={6}>
+                    <Grid item sm={6}>
                         <div className={classes.musicianImageBorder}>
                             {
                                 musician.image || musician.image !== ""  ?

@@ -55,7 +55,7 @@ const Playlist = () =>{
                                     variant="text"
                                     className={classes.playlistButton}
                                     text="New Playlist"
-                                    onClick={()=>history.push("/new-playlist")}
+                                    onClick={()=>history.push("/playlist/new")}
                                 />
                         </div>
                         <Container className={classes.albumPageListContainer}>

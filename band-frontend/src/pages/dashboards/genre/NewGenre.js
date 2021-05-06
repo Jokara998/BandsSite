@@ -1,71 +1,61 @@
-import React, {useState, useContext} from "react"
+import React, {useState} from "react"
 import {useHistory} from "react-router-dom"
-import {Container, Card, CardHeader, CardContent, Grid, TextField, IconButton} from "@material-ui/core"
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import Button from "../components/controls/Button"
-import Loader from "../components/Loader"
-import ErrorMessage from "../components/ErrorMessage"
-import useStyles from "../assets/styles"
+import {Container, Card, CardHeader, CardContent, Grid, TextField} from "@material-ui/core"
+import Button from "../../../components/controls/Button"
+import Loader from "../../../components/Loader"
+import ErrorMessage from "../../../components/ErrorMessage"
+import SuccessMessage from "../../../components/SuccessMessage"
+import useStyles from "../../../assets/styles"
 import {useForm, Controller} from "react-hook-form"
-import axios from "../axios/index"
-import {UserContext} from "../context/UserContext"
-import getUserInfo from "../service/getUserInfo"
+import axios from "../../../axios/index"
 
-
-
-const Login = () =>{
+const NewGenre = () =>{
     const classes = useStyles();
     const history = useHistory();
     const { handleSubmit, control, formState: { errors }, reset } = useForm();
-    const [showPassword, setShowPassword] = useState(false);  
     const [loader, setLoader] = useState(false);
     const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const [user, setUser] = useContext(UserContext);
 
-    const getUser = async () =>{
-        const userInfo = await getUserInfo();
-        setUser(userInfo);
-    }
-
-
-    const sendLogin = async (data, e) =>{
+    const postGenre = async (data, e) =>{
         e.preventDefault();
-        setLoader(prevLoader=>!prevLoader)
-        await axios.post("/user/login", data)
-        .then( response=>{
-
-            console.log(response);
-            setLoader(prevLoader=>!prevLoader)
-            getUser();
-            history.push("/")
+        console.log(data)
+        setLoader(true)
+        await axios.post("/genre", data)
+        .then( () =>{
+            reset({
+                name:"",
+                description:"",
+            })
+            handleClose();
 
         }).catch(err=>{
             handleError(err.response.data.message);
         })
     }
 
-    const showPasswordHandle = () =>{
-        setShowPassword(prevShowPassword => !prevShowPassword);
-    }
-
     const handleError = (messageError) => {
-        setLoader(prevLoader => !prevLoader);
+        setLoader(false);
         setErrorMessage(messageError);
-        setError(prevError => !prevError);
+        setError(true);
     }
 
     const errorClose = () =>{
-        setError(prevError=>!prevError)
+        setError(false)
+    }
+
+    const handleClose = () => {
+        setLoader(false);
+        setSuccess(true);
     }
 
     return(
         <Container className={classes.loginContainer}>
             <Card className={classes.loginCard}>
-                <CardHeader title="Login"/>
+                <CardHeader title="New Genre"/>
                 <CardContent>
-                <form onSubmit={handleSubmit(sendLogin)} >
+                <form onSubmit={handleSubmit(postGenre)} >
                      <br/>
                      <Grid container spacing={2}>
                         <Grid item xs={12}>
@@ -73,70 +63,64 @@ const Login = () =>{
                                 render={ 
                                     ({field}) => 
                                     <TextField 
-                                        label="Username" 
+                                        label="Name" 
                                         variant="filled" 
                                         type="text" 
-                                        id="username" 
+                                        id="name" 
                                         required
                                         fullWidth
                                         className={classes.registerInput}
                                         value={field.value}
                                         onChange={field.onChange}
                                         inputRef={field.ref}
-                                        error={errors.username ? true : false}
-                                        helperText={errors.username ?  errors.username.message : null}
+                                        error={errors.name ? true : false}
+                                        helperText={errors.name ?  errors.name.message : null}
                                     /> 
                                 }
-                                name="username"
+                                name="name"
                                 defaultValue=""
                                 control={control}
                                 rules={
                                     {
                                         required:true, 
-                                        maxLength:{ value:20, message:"Username must be less than 20 characters! "}, 
-                                        minLength:{ value:6, message:"Username must be more than 5 characters! "}, 
+                                        maxLength:{ value:20, message:"Name must be less than 20 characters! "}, 
+                                        minLength:{ value:2, message:"Name must be more than 1 characters! "}, 
                                     }
                                 }
                             
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <Controller
+                        <Controller
                                 render={ 
                                     ({field}) => 
                                     <TextField 
-                                        label="Password" 
+                                        label="Description" 
                                         variant="filled" 
-                                        type={showPassword?"text":"password"} 
-                                        id="password" 
+                                        type="text" 
+                                        id="description" 
                                         required
                                         fullWidth
+                                        rows={5}
+                                        multiline
                                         className={classes.registerInput}
                                         value={field.value}
                                         onChange={field.onChange}
                                         inputRef={field.ref}
-                                        error={errors.password ? true : false}
-                                        helperText={errors.password ?  errors.password.password : null}
-                                        InputProps={{
-                                            endAdornment:
-                                                    <IconButton
-                                                        onClick = {showPasswordHandle}
-                                                    >
-                                                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                                                    </IconButton>
-                                        }}                                                                      
-                                    />                                                                                       
+                                        error={errors.description ? true : false}
+                                        helperText={errors.description ?  errors.description.message : null}
+                                    /> 
                                 }
-                                name="password"
+                                name="description"
                                 defaultValue=""
                                 control={control}
                                 rules={
                                     {
                                         required:true, 
-                                        maxLength:{ value:20, message:"Password must be less than 20 characters! "}, 
-                                        minLength:{ value:6, message:"Password must be more than 5 characters! "}, 
+                                        maxLength:{ value:40, message:"Description must be less than 40 characters! "}, 
+                                        minLength:{ value:11, message:"Description must be more than 10 characters! "}, 
                                     }
-                                }                              
+                                }
                             />
                         </Grid>
                      </Grid>
@@ -147,7 +131,7 @@ const Login = () =>{
                             fullWidth
                             variant="contained"
                             className={classes.registerButton}
-                            text="Login"
+                            text="Submit"
                         />
                         </Grid>
                      
@@ -155,9 +139,10 @@ const Login = () =>{
                 </CardContent>
             </Card>
             {loader ? <Loader open={loader} title={"Proccesing request..."}/> : null}
+            {success ? <SuccessMessage open={success} message={"Genre Added!"} confirm={true} confirmFun={()=>{history.push("/dashboard/genre")}} /> : null}
             {error ? <ErrorMessage open={error} message={errorMessage} close={true} closeFun={errorClose} /> : null}
         </Container>   
     )
 }
 
-export default Login;
+export default NewGenre;

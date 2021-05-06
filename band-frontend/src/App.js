@@ -14,6 +14,8 @@ import Playlists from "./pages/Playlists"
 import Playlist from "./pages/Playlist"
 import NewPlaylist from "./pages/NewPlaylist"
 import EditPlaylist from "./pages/EditPlaylist"
+import Dashboard from "./pages/Dashboard"
+import NewGenre from "./pages/dashboards/genre/NewGenre"
 import {UserProvider} from "./context/UserContext"
 import theme from './assets/theme'
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -30,17 +32,23 @@ function App() {
                 <Switch>
                   <Route path="/" exact component={Homepage} />
                   <Route path="/login" component={Login} />
-                  <Route path="/new-playlist" component={NewPlaylist} />
-                  <Route path="/playlist" exact component={Playlists} />
-                  <Route path="/playlist/:id" exact component={Playlist} />
-                  <Route path="/playlist/:id/edit-playlist" component={EditPlaylist} />
                   <Route path="/register" component={Register} />
-                  <Route path="/musician/:id" component={Musician} />
+                  <Route path="/dashboard/genre" exact component={Dashboard} />
+                  <Route path="/dashboard/genre/new" component={NewGenre} />
+
+                  <Route path="/playlist" exact component={Playlists} />
+                  <Route path="/playlist/new" component={NewPlaylist} />
+                  <Route path="/playlist/:id" exact component={Playlist} />
+                  <Route path="/playlist/:id/edit" component={EditPlaylist} />
+
                   <Route path="/genre" exact component={Genres} />
                   <Route path="/genre/:id/band" component={Genre} />
+
                   <Route path="/band/:id" exact component={Band} />
                   <Route path="/band/:id/album" component={Albums} />
-                  <Route path="/album/:id" exact component={Album} />
+
+                  <Route path="/album/:id" component={Album} />
+                  <Route path="/musician/:id" component={Musician} />
                 </Switch>
             </Router>
             </ThemeProvider>
