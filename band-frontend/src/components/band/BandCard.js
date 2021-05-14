@@ -1,5 +1,5 @@
 import React from "react"
-import {Grid, Card, CardActions, CardContent } from "@material-ui/core"
+import {Card, CardActions, CardContent } from "@material-ui/core"
 import useStyles from "../../assets/styles"
 import Button from "../controls/Button"
 import {Link} from "react-router-dom"

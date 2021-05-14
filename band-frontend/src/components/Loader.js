@@ -1,5 +1,5 @@
 import React from "react"
-import {Modal, Container, LinearProgress, Card, CardHeader, CardContent} from '@material-ui/core'
+import {Modal, Container, LinearProgress, Card, CardContent} from '@material-ui/core'
 import useStyles from "../assets/styles"
 
 const Loader = ({open, handleClose, title}) =>{

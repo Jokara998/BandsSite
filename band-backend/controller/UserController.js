@@ -6,7 +6,7 @@ const auth = require("../auth/auth")
 router.get(
     "/auth",
     auth,
-    async (req,res) => {
+    (req,res) => {
         try{
             const user = req.user;
             res.status(200).json({loggedIn:true, username:user.username, type:user.type});

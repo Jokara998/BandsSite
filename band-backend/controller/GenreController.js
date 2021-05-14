@@ -1,10 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const {GenreService, BandService} = require("../service/index")
+const auth = require("../auth/auth")
+const {moderator} = require("../auth/authorization")
 
 
 router.post(
     "/",
+    auth,
+    moderator,
     async (req, res) =>{
         try{
             const response = await GenreService.saveGenre(req.body);
@@ -17,6 +21,36 @@ router.post(
         }
     }
 );
+
+router.put(
+    "/:id",
+    auth,
+    moderator,
+    async (req, res) =>{
+        try{
+            const genreResponse = await GenreService.updateOne(req.params.id, req.body);
+            res.status(genreResponse.status).json({message:genreResponse.message});
+        }catch(err){
+            res.status(404).json({message:err});
+        }
+    }
+
+)
+
+router.delete(
+    "/:id",
+    auth,
+    moderator,
+    async (req, res) =>{
+        try{
+            const genreResponse = await GenreService.deleteOne(req.params.id);
+            res.status(genreResponse.status).json({message:genreResponse.message});
+        }catch(err){
+            res.status(404).json({message:err});
+        }
+    }
+
+)
 
 router.get(
     "/:id",

@@ -28,16 +28,16 @@ const NavBar = () =>{
     },[])
 
 
-    const logout = () =>{
+    const logout = async () =>{
         setLoader(true);
-        axios.get("/user/logout")
-        .then(response=>{
+        await axios.get("/user/logout")
+        .then(()=>{
             setUser({
                 loggedIn:false,
                 type:"",
                 username:""
             })
-            setLoader(true);
+            setLoader(false);
             history.push("/")
         })
     }
@@ -53,7 +53,13 @@ const NavBar = () =>{
                     {
                         user.type === "Moderator" ? 
                         <Link to="/dashboard/genre" className={classes.navLink}> 
-                            <Button className={classes.navButton}> <Icon size={1} path={mdiDesktopMacDashboard} /> <span className={classes.navLink}> Dashboard </span> </Button>
+                            <Button className={classes.navButton}> <Icon size={1} path={mdiDesktopMacDashboard} /> <span className={classes.navLink}> Genres </span> </Button>
+                        </Link> : null
+                    }
+                    {
+                        user.type === "Moderator" ? 
+                        <Link to="/dashboard/band" className={classes.navLink}> 
+                            <Button className={classes.navButton}> <Icon size={1} path={mdiDesktopMacDashboard} /> <span className={classes.navLink}> Bands </span> </Button>
                         </Link> : null
                     }
                     {

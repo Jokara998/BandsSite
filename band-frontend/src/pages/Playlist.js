@@ -2,13 +2,13 @@ import React, {useState, useEffect, useContext} from "react"
 import useStyles from "../assets/styles"
 import axios from "../axios/index"
 import Loader from "../components/Loader"
-import {Container,Card, ListItem, List, Grid, IconButton, Tooltip} from "@material-ui/core"
+import {Container,Card, ListItem, List, Grid} from "@material-ui/core"
 import img from "../assets/playlist.jpg"
 import SongCard from "../components/song/SongCard"
 import {UserContext} from "../context/UserContext"
 import getUserInfo from "../service/getUserInfo"
 import Button from "../components/controls/Button"
-import DeletePlaylist from "../components/DeletePlaylist"
+import DeleteDialog from "../components/DeleteDialog"
 import {useHistory} from "react-router-dom"
 import ErrorMessage from "../components/ErrorMessage"
 import SuccessMessage from "../components/SuccessMessage"
@@ -151,7 +151,7 @@ const Playlist = ({match}) =>{
             </Container>
         
         }
-        {deleteModal ? <DeletePlaylist playlist={playlist} open={deleteModal} confirm={true} confirmFun={deletePlaylistFun} cancel={true} cancelFun={()=>setDeleteModal(false)} /> : null}
+        {deleteModal ? <DeleteDialog payload={playlist} type={"playlist"} open={deleteModal} confirm={true} confirmFun={deletePlaylistFun} cancel={true} cancelFun={()=>setDeleteModal(false)} /> : null}
         {miniLoader ? <Loader key={"miniLoader"} open={miniLoader} title={"Proccesing request..."} /> : null}
         {error ? <ErrorMessage open={error} message={errorMessage} close={true} closeFun={errorClose} /> : null}
         {success ? <SuccessMessage open={success} message={"Playlist deleted!"} confirm={true} confirmFun={redirectPlaylist} /> : null}

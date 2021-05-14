@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
-import {Modal, Container, Card, Grid, CardContent, ListItem, IconButton, LinearProgress} from '@material-ui/core'
+import {Modal, Container, Card, Grid, CardContent, ListItem, IconButton} from '@material-ui/core'
 import useStyles from "../../assets/styles"
-import { mdiMusicCircleOutline, mdiCloseCircleOutline, mdiMotionPlay, mdiMotionPause } from '@mdi/js'
+import { mdiMusicCircleOutline, mdiCloseCircleOutline } from '@mdi/js'
 import {Icon} from '@mdi/react';
 import img from "../../assets/noimg.jpg"
 import Loader from "../Loader"
@@ -91,7 +91,7 @@ const SongPlayingCard = ({songId, open, handleClose}) =>{
         }else if(type==="playlist"){
                
             const currentSong = songsList.find(s => s.song.id === song.id)
-            if(currentSong.index == songsList.length){
+            if(currentSong.index === songsList.length){
                 const nextSong = songsList.find(s => s.index === 1)
                 getNextSong(nextSong.song.id);
             }else{
@@ -118,7 +118,7 @@ const SongPlayingCard = ({songId, open, handleClose}) =>{
         }else if(type==="playlist"){
                
             const currentSong = songsList.find(s => s.song.id === song.id)
-            if(currentSong.index == 1){
+            if(currentSong.index === 1){
                 const nextSong = songsList.find(s => s.index === songsList.length)
                 getNextSong(nextSong.song.id);
             }else{

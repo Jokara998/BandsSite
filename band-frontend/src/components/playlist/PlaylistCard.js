@@ -1,18 +1,15 @@
-import React, {useState} from "react"
+import React from "react"
 import {Card, ListItem, Grid, Container, IconButton, Tooltip } from "@material-ui/core"
 import useStyles from "../../assets/styles"
-import {Link} from "react-router-dom"
+import {useHistory} from "react-router-dom"
 import { mdiArrowRightBoldCircleOutline } from '@mdi/js'
 import {Icon} from '@mdi/react';
 import img from "../../assets/playlist.jpg"
 
 const PlaylistCard = ({playlist}) =>{
     const classes = useStyles();
+    const history = useHistory();
     
-    const itemStyle = {
-        marginTop:"3px",
-    }
-
     return (
        <ListItem className={classes.playlistItem}>
            <Card className={classes.playlistCard}>
@@ -33,13 +30,11 @@ const PlaylistCard = ({playlist}) =>{
                         </Card>
                     </Grid>
                     <Grid container sm={3}>
-                        <Link to={`/playlist/${playlist.id}`}>
-                            <Tooltip  title={<h2 className={classes.tooltip}>Open playlist?</h2>} placement="right" arrow>
-                                <IconButton style={{marginLeft:"-10px"}}>
-                                    <Icon className={classes.playlistArrowIcon} size={1.3}  path={mdiArrowRightBoldCircleOutline}/>
-                                </IconButton>
-                            </Tooltip>
-                        </Link>
+                        <Tooltip  title={<h2 className={classes.tooltip}>Open playlist?</h2>} placement="right" arrow>
+                            <IconButton style={{marginLeft:"-10px"}} onClick={()=>history.push("/playlist/"+playlist.id)}>
+                                <Icon className={classes.playlistArrowIcon} size={1.3}  path={mdiArrowRightBoldCircleOutline}/>
+                            </IconButton>
+                        </Tooltip>
                     </Grid>
                 </Grid>
            </Card>

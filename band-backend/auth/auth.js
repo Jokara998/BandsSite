@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 require("dotenv/config")
 
-module.exports = async (req, res, next) => {
+module.exports =  (req, res, next) => {
     if(!req.cookies)
         return res.status(401).json({message:"Access Denied!"})
 

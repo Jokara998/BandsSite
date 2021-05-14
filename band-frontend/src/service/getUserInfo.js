@@ -1,6 +1,5 @@
 import axios from "../axios/index"
 
-
 const getUserInfo = async () =>{
     let user = {
         loggedIn:false,

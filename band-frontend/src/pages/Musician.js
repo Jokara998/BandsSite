@@ -75,16 +75,16 @@ const Musician = ({match}) =>{
                                         <div>
                                             Social Follow:
                                             <ul>
-                                                <a href="https://www.facebook.com/" className={classes.homepageLink}>
+                                                <a href="https://www.facebook.com/" target = "_blank" className={classes.homepageLink}>
                                                     <Icon size={1} path={mdiFacebook} />
                                                 </a>
-                                                <a href="https://www.instagram.com/" className={classes.homepageLink}>
+                                                <a href="https://www.instagram.com/" target = "_blank" className={classes.homepageLink}>
                                                     <Icon size={1} path={mdiInstagram} />
                                                 </a>
-                                                <a href="https://www.youtube.com" className={classes.homepageLink}>
+                                                <a href="https://www.youtube.com" target = "_blank" className={classes.homepageLink}>
                                                     <Icon size={1} path={mdiYoutube} />
                                                 </a>
-                                                <a href="https://www.twitter.com/" className={classes.homepageLink}>
+                                                <a href="https://www.twitter.com/" target = "_blank" className={classes.homepageLink}>
                                                     <Icon size={1} path={mdiTwitter} />
                                                 </a>  
                                             </ul> 

@@ -1,4 +1,4 @@
-const {GenreRepository} = require("../repository/index")
+const {GenreRepository, BandRepository} = require("../repository/index")
 const Genre = require("../models/Genre")
 
 const saveGenre = async (body) =>{
@@ -22,6 +22,46 @@ const saveGenre = async (body) =>{
                 description:savedGenre.description,
                 date:savedGenre.date,
             },
+            status:200
+        }
+        
+    }catch(err){
+        return { status:404, message:err}
+    }
+}
+
+const updateOne = async (id, body) =>{
+    try{
+
+        const genre = await GenreRepository.findByName(body.name);
+        if(genre && genre._id == id){
+            return { status:409, message:"Genre name is already used!"}
+        }
+
+        const updatedGenre = await GenreRepository.updateById(id, body.name, body.description);
+        return {
+            message:"Genre Updated!",
+            status:200
+        }
+        
+    }catch(err){
+        return { status:404, message:err}
+    }
+}
+
+const deleteOne = async (id) =>{
+    try{
+
+        const bands = await BandRepository.findAllByGenreId(id);
+        if(bands.length >= 1)
+            return {
+                message:"Genre contains bands and can not be deleted!",
+                status:409
+            }
+        
+        const deletedGenre = await GenreRepository.deleteById(id);
+        return {
+            message:"Genre Deleted!",
             status:200
         }
         
@@ -74,6 +114,8 @@ const getAll = async () =>{
 module.exports = {
     saveGenre,
     getOne,
-    getAll
+    getAll,
+    deleteOne,
+    updateOne,
 }
 

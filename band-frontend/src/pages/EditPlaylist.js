@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import {Container, Card, CardHeader, CardContent, Grid, MenuItem, InputLabel, Select, IconButton, Tooltip, List, ListItem, TextField} from "@material-ui/core"
+import {Container, Card, CardContent, Grid, MenuItem, InputLabel, Select, IconButton, Tooltip, List, ListItem, TextField} from "@material-ui/core"
 import Button from "../components/controls/Button"
 import Loader from "../components/Loader"
 import useStyles from "../assets/styles"
@@ -188,7 +188,7 @@ const EditPlaylist = ({match}) =>{
                         <form onSubmit={handleSubmit(postPlaylist)} >
                             <Grid style={{display:"flex", marginRight:"35px", marginLeft:"35px"}}>
                                 <Grid item xs={12} sm={6}>
-                                    <InputLabel className={classes.newPlaylistInputLabelH}>New Playlist</InputLabel>
+                                    <InputLabel className={classes.newPlaylistInputLabelH}>Edit Playlist</InputLabel>
                                 </Grid>
                                 <Grid item xs={12} sm={6} style={{display:"flex", justifyContent:"right", alignContent:"right", marginLeft:"30px"}}>
                                     <Controller

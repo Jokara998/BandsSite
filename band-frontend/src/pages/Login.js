@@ -17,7 +17,7 @@ import getUserInfo from "../service/getUserInfo"
 const Login = () =>{
     const classes = useStyles();
     const history = useHistory();
-    const { handleSubmit, control, formState: { errors }, reset } = useForm();
+    const { handleSubmit, control, formState: { errors } } = useForm();
     const [showPassword, setShowPassword] = useState(false);  
     const [loader, setLoader] = useState(false);
     const [error, setError] = useState(false);

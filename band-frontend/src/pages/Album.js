@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import useStyles from "../assets/styles"
 import axios from "../axios/index"
 import Loader from "../components/Loader"
-import {Container,Card, ListItem, List, Grid, CardContent, CardActions} from "@material-ui/core"
+import {Container,Card, ListItem, List, Grid} from "@material-ui/core"
 import img from "../assets/noimg.jpg"
 import SongCard from "../components/song/SongCard"
 

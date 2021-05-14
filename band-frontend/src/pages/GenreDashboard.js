@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 import {useHistory} from "react-router-dom"
-import {Container, Card, CardContent, ListItem, List } from "@material-ui/core"
+import {Container, Card, CardContent, List } from "@material-ui/core"
 import Button from "../components/controls/Button"
 import useStyles from "../assets/dashboardStyles"
 import Loader from "../components/Loader";
